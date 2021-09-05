@@ -27,7 +27,7 @@ RUN sudo apt install -y wget
 RUN sudo apt install -y fonts-powerline 
 RUN sudo apt install -y python 
 RUN sudo apt install -y python3
-RUN sudo apt install -y build-essential 
+RUN sudo apt install -y build-essential
 RUN sudo apt install -y vim
 
 # Install Node.js
@@ -48,7 +48,7 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerleve
 # Configure Git
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/git/.gitconfig -O - > ~/.gitconfig
 
-# Install Zsh and Plugins
+# Configure Zsh and Plugins
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.zshrc -O - > ~/.zshrc
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.p10k.zsh -O - > ~/.p10k.zsh
 
