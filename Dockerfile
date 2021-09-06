@@ -52,8 +52,8 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zs
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/git/.gitconfig -O - > ~/.gitconfig
 
 # Configure Zsh and Plugins
-# RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.zshrc -O - > ~/.zshrc
-# RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.p10k.zsh -O - > ~/.p10k.zsh
+RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.zshrc -O - > ~/.zshrc
+RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.p10k.zsh -O - > ~/.p10k.zsh
 
 # Use ZSH as the default shell
 CMD [ "zsh" ]
