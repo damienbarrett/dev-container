@@ -40,7 +40,10 @@ RUN npm install --global typescript@4.4.2
 
 # Install Zsh and Plugins
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+# The following line is the 'manual' version not the ZSH version
+# RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+# The following line is the ZSH version
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
 
 # CONFIGURATIONS
 # ==============
@@ -49,8 +52,8 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerleve
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/git/.gitconfig -O - > ~/.gitconfig
 
 # Configure Zsh and Plugins
-RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.zshrc -O - > ~/.zshrc
-RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.p10k.zsh -O - > ~/.p10k.zsh
+# RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.zshrc -O - > ~/.zshrc
+# RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.p10k.zsh -O - > ~/.p10k.zsh
 
 # Use ZSH as the default shell
 CMD [ "zsh" ]
