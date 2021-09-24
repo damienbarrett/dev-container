@@ -37,6 +37,7 @@ RUN sudo apt install --yes nodejs
 # Install Node.js Global Packages
 RUN npm install --global npm@7.22.0
 RUN npm install --global typescript@4.4.2
+RUN npm install --global yarn@1.22.11
 
 # Install Zsh and Plugins
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true

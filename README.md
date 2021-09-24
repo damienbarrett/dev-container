@@ -1,9 +1,13 @@
 Development Container
 =====================
 
+Host Container
+--------------
+
 Ensure the following are installed on the HOST machine:
  - Docker Desktop
  - Visual Studio Code
+    - Docker extension
     - Remote Containers extension 
  - Font
    - CaskaydiaCove Nerd Font
@@ -27,3 +31,11 @@ Update tags and push to docker hub.
     > docker image push dev-container damienbarrett/dev-container:latest
     > docker image push damienbarrett/dev-container:latest
 
+
+Per Project Notes
+-----------------
+
+### Yarn
+
+ > yarn set version berry
+ > yarn init -y
