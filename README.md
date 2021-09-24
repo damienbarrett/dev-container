@@ -17,6 +17,14 @@ Ensure the following are installed on the HOST machine:
 Docker Notes
 ------------
 
+If changes are made to Dockerfile then the following steps should be taken:
+1. Update Docker build.
+2. Update tags and push to docker hub.
+
+Update docker build.
+
+    > ./docker-build.sh
+
 Update tags and push to docker hub.
 
     > docker image tag dev-container damienbarrett/dev-container:v1
