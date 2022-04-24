@@ -54,4 +54,11 @@ Quick Start Guide
 ### macOS clean build
 
     git clone https://github.com/damienbarrett/dev-container.git
+
+- Make changes to Dockerfile
+- Update version in docker-push.sh and docker-push.ps1
+- Test using docker-build.sh
+- If successful then docker-push.x and git push
+
     
+
