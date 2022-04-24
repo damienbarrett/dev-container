@@ -26,7 +26,8 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | sudo bash -
 
 
 # Install Ubuntu Packages
-RUN sudo apt install --yes \
+ARG DEBIAN_FRONTEND=noninteractive
+RUN sudo apt-get install --yes \
     zsh \
     git \
     wget \
@@ -35,7 +36,15 @@ RUN sudo apt install --yes \
     python3 \
     build-essential \
     vim \
-    nodejs
+    nodejs 
+
+# Install PostgreSQL
+
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get install --yes \
+    postgresql \
+    postgresql-client \
+    postgresql-contrib
 
 # Install Node.js Global Packages
 RUN npm install --global npm@7.22.0 \
@@ -60,6 +69,22 @@ RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/git/.git
 # Configure Zsh and Plugins
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.zshrc -O - > ~/.zshrc
 RUN wget https://github.com/damienbarrett/dev-container/raw/main/config/zsh/.p10k.zsh -O - > ~/.p10k.zsh
+
+# Configure PostgreSQL
+# https://docs.docker.com/samples/postgresql_service/
+USER postgres
+RUN  /etc/init.d/postgresql start &&\
+    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
+    createdb -O docker docker
+RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/12/main/pg_hba.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/12/main/postgresql.conf
+USER root
+RUN echo "sudo -u postgres /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c config_file=/etc/postgresql/12/main/postgresql.conf &" >> /start-postgres.sh
+RUN chmod +x /start-postgres.sh
+RUN echo "sudo -u postgres psql" >> /start-psql.sh
+RUN chmod +x /start-psql.sh
+
+EXPOSE 5432
 
 # Use ZSH as the default shell
 CMD [ "zsh" ]
