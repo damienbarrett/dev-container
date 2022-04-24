@@ -55,10 +55,23 @@ Quick Start Guide
 
     git clone https://github.com/damienbarrett/dev-container.git
 
-- Make changes to Dockerfile
-- Update version in docker-push.sh and docker-push.ps1
-- Test using docker-build.sh
-- If successful then docker-push.x and git push
+Make changes to the following files:
+
+    Dockerfile
+    docker-push.ps1
+    docker-push.sh
+    
+Test by running the following file:
+
+    ./docker-build.sh
+    .\docker-build.ps1
+    
+Make updates by running the following:
+
+    git add .
+    git commit
+    git pull && git push
+    ./docker-push.sh
 
     
 
