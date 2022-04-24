@@ -47,3 +47,11 @@ Per Project Notes
 
  > yarn set version berry
  > yarn init -y
+
+Quick Start Guide
+-----------------
+
+### macOS clean build
+
+    git clone https://github.com/damienbarrett/dev-container.git
+    
