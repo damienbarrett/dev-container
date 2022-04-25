@@ -36,7 +36,10 @@ RUN sudo apt-get install --yes \
     python3 \
     build-essential \
     vim \
-    nodejs 
+    nodejs
+
+# Install Go
+RUN apt-get --yes install --no-install-recommends golang-go
 
 # Install PostgreSQL
 
