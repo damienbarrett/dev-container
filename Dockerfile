@@ -19,7 +19,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt install --yes \
         sudo \
-        curl
+        curl \
+        ca-certificates
 
 # Update Node.js Repository
 RUN curl --silent --location https://deb.nodesource.com/setup_16.x | sudo bash - 
@@ -27,7 +28,7 @@ RUN curl --silent --location https://deb.nodesource.com/setup_16.x | sudo bash -
 
 # Install Ubuntu Packages
 ARG DEBIAN_FRONTEND=noninteractive
-RUN sudo apt-get install --yes \
+RUN sudo apt-get install --no-install-recommends --yes \
     zsh \
     git \
     wget \
@@ -36,18 +37,27 @@ RUN sudo apt-get install --yes \
     python3 \
     build-essential \
     vim \
-    nodejs
-
-# Install Go
-RUN apt-get --yes install --no-install-recommends golang-go
+    nodejs \
+    gnupg \
+    golang-go
 
 # Install PostgreSQL
 
 ARG DEBIAN_FRONTEND=noninteractive
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+RUN sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' 
 RUN apt-get install --yes \
     postgresql \
     postgresql-client \
-    postgresql-contrib
+    postgresql-contrib 
+
+# Install pgAdmin
+
+# RUN curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+# RUN sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+# RUN sudo apt-get install --yes build-essential libssl-dev libffi-dev libgmp3-dev python3-virtualenv libpq-dev python3-dev
+# RUN sudo /usr/pgadmin4/bin/setup-web.sh 
+
 
 # Install Node.js Global Packages
 RUN npm install --global npm@7.22.0 \

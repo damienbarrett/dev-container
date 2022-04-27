@@ -1,5 +1,5 @@
 $MAJOR=4
-$MINOR=0
+$MINOR=1
 $PATCH=0 # *** !! UPDATE THIS AT A MINIMUM EACH TIME !! ***
 
 docker image tag dev-container damienbarrett/dev-container:v$MAJOR
